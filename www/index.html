@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Libreria</title>
+    </head>
+    <body>
+        
+        <h2>Crear un Libro</h2>
+        <div>
+            ISBN: <input id="in_isbn"       type="number"> <br/>
+            Nombre: <input id="in_nombre"     type="text"> <br/>
+            Editorial: <input id="in_editorial"  type="text"> <br/>
+            Fecha Publicacion: <input id="in_fechapubli" type="text"> <br/>
+            Autores: <input id="in_autores" type="text"> <br/>
+            <button onclick="crearLibro2();">Guardar</button>
+        </div> <br/>
+
+        <h4>
+            <span>Libros creados:</span> 
+            <span id="numlibros"></span>
+        </h4>
+        
+        
+        <script type="text/javascript" src="js/jquery_m/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery_m/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/jquery_m/jquery.mobile-1.4.5.min.js.map"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/Libro.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+
+    </body>
+    <script>
+        function crearlibro() { 
+            var  libroTemp= new Libro(); 
+            libroTemp.isbn       =document.getElementById('in_isbn').value;
+            libroTemp.nombre     =document.getElementById('in_nombre').value;
+            libroTemp.editorial  =document.getElementById('in_editorial').value;
+            libroTemp.fecha_publi=document.getElementById('in_fechapubli').value;
+            libroTemp.autores    =document.getElementById('in_autores').value;
+            
+            
+            librosCreados.push(libroTemp);
+
+            alert("Libro "+libroTemp.nombre+" fue creado.");
+            document.getElementById('numlibros').innerHTML = librosCreados.length;
+            //limpiarDatos();
+        }
+
+        function crearLibro2() {
+            var libroT = new Libro();
+            libroT.isbn       = $('#in_isbn').val();
+            libroT.nombre     = $('#in_nombre').val();
+            libroT.editorial  = $('#in_editorial').val();
+            libroT.fecha_publi= $('#in_fechapubli').val())
+            libroT.autores    = $('#in_autores').val();
+
+            librosCreados.push(libroT);
+
+            alert("Libro "+libroT.nombre+" fue creado.");
+            $('#numlibros').html(librosCreados.length);
+            //limpiarDatos();
+        }
+
+        function limpiarDatos(argument) {
+            document.getElementById('in_isbn').value = "";
+            document.getElementById('in_nombre').value = "";
+            document.getElementById('in_editorial').value = "";
+            document.getElementById('in_fechapubli').value = "";
+            document.getElementById('in_autores').value = "";
+        }
+
+
+    </script>
+</html>
